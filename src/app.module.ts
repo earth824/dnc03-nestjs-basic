@@ -3,9 +3,10 @@ import { AppController, TestService } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { UserModule } from './user/user.module.js';
 import { ProductModule } from './product/product.module.js';
+import { AuthModule } from './auth/auth.module.js';
 
 @Module({
-  imports: [UserModule, ProductModule],
+  imports: [UserModule, ProductModule, AuthModule],
   controllers: [AppController],
   providers: [AppService, TestService],
 })

@@ -20,7 +20,7 @@ class ArgonService extends HashService {
 }
 
 @Module({
-  imports: [],
+  imports: [UserModule],
   controllers: [ProductController],
   providers: [ProductService],
   // providers: [

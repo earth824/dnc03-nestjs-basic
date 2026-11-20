@@ -2,6 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  Param,
+  Patch,
   Post,
   StandardSchemaValidationPipe,
   UsePipes,
@@ -10,7 +12,9 @@ import {
   type CreateUserDto,
   createUserSchema,
 } from './dtos/create-user.dto.js';
+import z from 'zod';
 
+// @UsePipes(StandardSchemaValidationPipe)
 @Controller('users')
 export class UserController {
   @Get()
@@ -18,7 +22,7 @@ export class UserController {
     return [];
   }
 
-  @UsePipes(StandardSchemaValidationPipe)
+  // @UsePipes(StandardSchemaValidationPipe)
   @Post()
   create(
     @Body({ schema: createUserSchema })
@@ -26,4 +30,9 @@ export class UserController {
   ) {
     return 'CREATE USER';
   } // Body { email: string, password: string, gender?: 'MALE' | 'FEMALE', dob?: string }
+
+  @Patch(':id')
+  update(
+    @Param('id', { schema: z.coerce.number().int().positive() }) id: number,
+  ) {}
 }
