@@ -1,10 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Injectable } from '@nestjs/common';
 import { AppService } from './app.service.js';
 
+@Injectable()
+export class TestService {}
+
+// Controller: Request handler, Sent Response
 @Controller()
 export class AppController {
   // Dependency Injection
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly testService: TestService,
+  ) {}
 
   @Get()
   getHello(): string {
